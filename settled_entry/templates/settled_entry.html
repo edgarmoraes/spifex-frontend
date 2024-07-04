@@ -1,0 +1,402 @@
+{% load static %}
+{% load currency_filters %}
+{% load number_filters %}
+{% load add_decimal %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settled-entry.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'favicon.png' %}" type="image/x-icon">
+    <title>Spifex | Realizado</title>
+</head>
+<body>
+    <nav class="navigation-bar">
+        <div class="navigation-bar__logo">
+            <a href="{% url 'cash_flow:cash_flow' %}" class="navigation-bar__logo--spifex-logo">Spifex</a>
+        </div>
+        <div class="navigation-bar__tabs">
+            <div class="navigation-bar__tabs--tabs">
+                <div class="tabs__buttons-list">
+                    <a href="{% url 'cash_flow:cash_flow' %}"><button class="tab-button tabs__buttons-list--cash-flow-page">Fluxo de Caixa</button></a>
+                    <a href="{% url 'settled_entry:settled_entry' %}"><button class="tab-button tabs__buttons-list--settled-page">Realizado</button></a>
+                    <a href="{% url 'reports:reports' %}"><button class="tab-button tabs__buttons-list--reports-page">Relatórios</button></a>
+                    <div class="tabs__buttons-list--profile-container">
+                        <button class="profile-container__account-button">
+                            <span class="profile-container__account-button--typography">
+                                <div class="profile-container__account-button--details">
+                                    <span class="details__text">Perfil</span>
+                                        <div class="profile-container__content--svg">
+                                            <svg fill="none" viewBox="0 0 24 24" role="none" style="flex: 1 1 0%;"><path fill="currentColor" fill-rule="evenodd" d="m12 17.338 9.665-8.59-1.33-1.495L12 14.662l-8.335-7.41-1.33 1.495L12 17.338Z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                </div>
+                            </span>
+                        </button>
+                        <div class="profile-dropdown-menu" style="display: none;">
+                            <span class="profile-dropdown-menu__item">
+                                <a class="profile-dropdown-menu__item--link" href="{% url 'settings:settings' %}">
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#202020" height="20" width="20" xmlns="http://www.w3.org/2000/svg" style="color: #202020;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"></path>
+                                    </svg><span class="link__description">Configurações da Empresa</span>
+                                </a>
+                            </span>
+                            <a href="#">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#202020" height="20" width="20" xmlns="http://www.w3.org/2000/svg" style="color: #202020;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                                <span>Configurações Pessoais</span>
+                            </a>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" color="#202020" width="20" height="20" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16" style="color: #202020;">
+                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+                              </svg>
+                              <span>Preferências de Notificação</span>
+                            </a>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" color="#b90000" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" style="color: #b90000;">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                                </svg>
+                              <span style="color: #b90000;">Sair</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- ############### Metade Superior da Página ############### -->
+    <main class="main">
+        <nav class="side-navigation" style="width: 60px;">
+            <div class="side-navigation__buttons-list" style="width: 60px;">
+                <li class="side-navigation__buttons-list--list">
+                    <button class="list__button list__button--filter-button">
+                        <svg data-value-pt="Filtros" xmlns="http://www.w3.org/2000/svg" color="#202020" width="24" height="24" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+                          </svg>
+                    </button>
+                </li>
+                <li class="side-navigation__buttons-list--operations side-navigation__buttons-list--list">
+                    <button class="list__button list__button--return-button" id="list__button--return-button">
+                        <svg data-value-pt="Retornar" xmlns="http://www.w3.org/2000/svg" color="#202020" width="24" height="24" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+                          </svg>
+                    </button>
+                </li>
+                <li class="side-navigation__buttons-list--operations side-navigation__buttons-list--list">
+                    <button class="list__button list__button--cancel-button" id="list__button--cancel-button">
+                        <svg data-value-pt="Cancelar" xmlns="http://www.w3.org/2000/svg" color="#202020" width="24" height="24" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                          </svg>
+                    </button>
+                </li>
+                <div class="side-navigation__buttons-list--expand-button">
+                    <div class="expand-button__container">
+                        <button class="expand-button__container--expand-button">
+                            <div class="expand-button__svg">
+                                <svg fill="none" viewBox="0 0 24 24" role="none" style="flex: 1 1 0%;"><path fill="currentColor" fill-rule="evenodd" d="m17.338 12-8.59 9.664-1.495-1.328L14.662 12l-7.41-8.336 1.495-1.328L17.337 12Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="second-tab filter-tab">
+            <div class="box-grid">
+                <form id="form-filters" method="get">
+                    <div class="box-grid-filters">
+                        <!-- ############### Filtro Bancos ############### -->
+                        <section class="flex">
+                            <label for="dropdown-button-banks">Bancos</label>
+                            <div class="dropdown-multiselect">
+                                <button type="button" onclick="toggleDropdown('dropdown-content-banks', event)" id="dropdown-button-banks" class="dropdown-button">Selecione</button>
+                                <div id="dropdown-content-banks" class="dropdown-content">
+                                    <div class="dropdown-header">
+                                        <button class="button-select-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-banks', true)">Selecionar Todos</button>
+                                        <button class="button-deselect-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-banks', false)">Desmarcar Todos</button>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        {% for banks_item in Banks_list %}
+                                        <label class="label-filters">
+                                            <input type="checkbox" name="banks" value="{{ banks_item.id }}" class="checkbox-bank">
+                                            {{ banks_item.bank }}
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- ############### Filtro Data Início ############### -->
+                        <section class="flex">
+                            <label for="start-date">De</label>
+                            <input class="data" type="date" id="start-date" name="start_date">
+                        </section>
+                        <!-- ############### Filtro Data Fim ############### -->
+                        <section class="flex">
+                            <label for="end-date">Até</label>
+                            <input class="data" type="date" id="end-date" name="end_date">
+                        </section>
+                        <!-- ############### Filtro transaction_type ############### -->
+                        <section class="flex">
+                            <label for="dropdown-button-transaction_type">Natureza</label>
+                            <div class="dropdown-multiselect">
+                                <button type="button" onclick="toggleDropdown('dropdown-content-transaction_type', event)" id="dropdown-button-transaction_type" class="dropdown-button">Crédito, Débito</button>
+                                <div id="dropdown-content-transaction_type" class="dropdown-content">
+                                    <div class="dropdown-header">
+                                        <button class="button-select-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-transaction_type', true)">Selecionar Todos</button>
+                                        <button class="button-deselect-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-transaction_type', false)">Desmarcar Todos</button>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <label class="label-filters">
+                                            <input type="checkbox" name="transaction_type" value="Crédito" class="transaction_type-checkbox">
+                                            Crédito
+                                        </label>
+                                        <label class="label-filters">
+                                            <input type="checkbox" name="transaction_type" value="Débito" class="transaction_type-checkbox">
+                                            Débito
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <main class="main-content">
+            <div class="main-content__header">
+                <div class="page-title-search-container">
+                    <div class="page-title-container">
+                        <span class="page-title-container__title">Fluxo de Caixa</span>
+                    </div>
+                    <!-- ############### Filtros de Palavras-Chave ############### -->
+                    <div class="search-content-container">
+                        <div class="search-content-container__block">
+                            <label for="search-bar-box">Palavras-Chave</label>
+                            <div class="block__search search-key-words-container">
+                                <input type="text" class="block__search--input search-bar-box" id="search-bar-box" name="search_bar_box" placeholder="Pesquisar">
+                            </div>
+                        </div>
+                        <!-- ############### Filtros de Tags ############### -->
+                        <div class="search-content-container__block">
+                            <label for="search-tags-bar-box">Tags</label>
+                            <div class="block__search search-tags-container">
+                                <input type="text" class="block__search--input search-tags-bar-box" id="search-tags-bar-box"  name="search_tags_bar_box" placeholder="Tags">
+                            </div>
+                        </div>
+                        <!-- ############### Filtro months ############### -->
+                        <div class="search-content-container__block">
+                            <label for="dropdown-button-months">Meses</label>
+                            <div class="dropdown-multiselect">
+                                <button type="button" onclick="toggleDropdown('dropdown-content-months', event)" id="dropdown-button-months" class="dropdown-button">Selecione</button>
+                                <div id="dropdown-content-months" class="dropdown-content dropdown-content-months">
+                                    <div class="dropdown-header">
+                                        <button class="button-select-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-months', true)">Selecionar Todos</button>
+                                        <button class="button-deselect-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-months', false)">Desmarcar Todos</button>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        {% for months in Months_list_cash_flow %}
+                                        <label class="label-filters">
+                                            <input type="checkbox" class="checkbox-month" value="{{ months.formatted_date }}" data-start-of-month="{{ months.start_of_month|date:'Y-m-d' }}" data-end-of-month="{{ months.end_of_month|date:'Y-m-d' }}">
+                                            {{ months.formatted_date }}
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ############### Filtro Contas Contábeis ############### -->
+                        <div class="search-content-container__block">
+                            <label for="dropdown-button-accounts">Contas Contábeis</label>
+                            <div class="dropdown-multiselect">
+                                <button type="button" onclick="toggleDropdown('dropdown-content-accounts', event)" id="dropdown-button-accounts" class="dropdown-button">Selecione</button>
+                                <div id="dropdown-content-accounts" class="dropdown-content dropdown-content-accounts">
+                                    <div class="dropdown-header">
+                                        <button class="button-select-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-accounts', true)">Selecionar Todos</button>
+                                        <button class="button-deselect-all" type="button" onclick="toggleAllCheckboxes('#dropdown-content-accounts', false)">Desmarcar Todos</button>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        {% for subgroup, accounts in Accounts_by_subgroup_list.items %}
+                                            <div class="subgroup-label" data-nature="{{ accounts.0.nature }}">{{ subgroup }}</div>
+                                            {% for account in accounts %}
+                                                <label class="label-filters">
+                                                    <input type="checkbox" class="checkbox-account" value="{{ account.uuid }}">
+                                                    {{ account.account }}
+                                                </label>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ############### Tabela de Bancos ############### -->
+                <button class="toggle-banks-btn" onclick="toggleBanks()">Bancos</button>
+                <div class="banks-table-wrapper" id="banks-table-wrapper">
+                    <table class="banks-table">
+                        <thead class="banks-table__head">
+                            <tr class="banks-table__head--row">
+                                <th class="banks-col" scope="col">Banco</th>
+                                <th class="bank-branch-col" scope="col">Agência</th>
+                                <th class="bank-account-col" scope="col">Conta</th>
+                                <th class="bank-balance-col" scope="col">Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="banks-table__body">
+                            {% for banks_item in Banks_list %}
+                            <tr class="banks-table__body--row" data-bank-id="{{ banks_item.id }}" scope="row">
+                                <td class="bank-row" name="bank">{{ banks_item.bank }}</td>
+                                <td class="bank-branch-row" name="bank_branch">{{ banks_item.bank_branch }}</td>
+                                <td class="bank-account-row" name="bank_account">{{ banks_item.bank_account }}</td>
+                                <td class="bank-balance-row" name="initial_balance">{{ banks_item.initial_balance|add_decimal:banks_item.current_balance|format_number }}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr class="total-banks-balance-row" scope="row">
+                                <td class=""></td>
+                                <td class=""></td>
+                                <td class="total-row">Total</td>
+                                <td class="total-banks-balance" name="total-banks-balance">{{ total_banks_balance|currency_br }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- ############### Tabela com Lançamentos ############### -->
+            <div class="settled-table-wrapper">
+                <table class="settled-table" id="settled-table">
+                    <thead class="settled-table__head">
+                        <tr class="settled-table__head--row">
+                            <th class="checkbox-col" scope="col">ㅤﾠ</th>
+                            <th class="due_date-col" scope="col">Vencimento</th>
+                            <th class="description-col" scope="col">Descrição</th>
+                            <th class="observation-col" scope="col">Observação</th>
+                            <th class="bank-col" scope="col">Banco</th>
+                            <th class="installment-col" scope="col">Parcela</th>
+                            <th class="debit-col" scope="col">Débito</th>
+                            <th class="credit-col" scope="col">Crédito</th>
+                            <th class="balance-col" scope="col">Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="settled-table__body" id="settled-table__body">
+                        {% for settled_table_item in Settled_table_list %}
+                            {% if settled_table_item.is_total %}
+                                <tr class="month-totals-row">
+                                    <td></td>
+                                    <td colspan="5">Total do Mês {{ settled_table_item.settlement_date|date:"m/Y" }}</td>
+                                    <td class="total-debit-row">{{ settled_table_item.debito|format_number }}</td>
+                                    <td class="total-credit-row">{{ settled_table_item.credito|format_number }}</td>
+                                    <td class="total-balance-row">{{ settled_table_item.saldo|format_number }}</td>
+                                </tr>
+                            {% else %}
+                                <tr class="settled-table__body--row" id="settled-table__body--row"
+                                data-id-row="{{ settled_table_item.id }}"
+                                data-settlement-bank="{{ settled_table_item.settlement_bank }}"
+                                data-settlement-bank-id="{{ settled_table_item.settlement_bank_id }}"
+                                data-general-ledger-account="{{ settled_table_item.general_ledger_account }}"
+                                data-uuid-general-ledger-account="{{ settled_table_item.uuid_general_ledger_account }}"
+                                data-transaction-type="{{ settled_table_item.transaction_type }}"
+                                data-notes="{{ settled_table_item.notes }}"
+                                data-current-installment="{{ settled_table_item.current_installment }}"
+                                data-uuid-installments-correlation="{{ settled_table_item.uuid_installments_correlation }}"
+                                data-total-installments="{{ settled_table_item.total_installments }}"
+                                data-uuid-partial-settlement-correlation="{{ settled_table_item.uuid_partial_settlement_correlation }}"
+                                data-document-type="{{ settled_table_item.document_type }}"
+                                data-uuid-document-type="{{ settled_table_item.uuid_document_type }}"
+                                data-project="{{ settled_table_item.project }}"
+                                data-uuid-project="{{ settled_table_item.uuid_project }}"
+                                data-department="{{ settled_table_item.department }}"
+                                data-percentage-department="{{ settled_table_item.department_percentage }}"
+                                data-uuid-department="{{ settled_table_item.uuid_department }}"
+                                data-periods="{{ settled_table_item.periods }}"
+                                data-weekend-action="{{ settled_table_item.weekend_action }}"
+                                data-inventory-item-code="{{ settled_table_item.inventory_item_code }}"
+                                data-inventory-item="{{ settled_table_item.inventory_item }}"
+                                data-inventory-quantity="{{ settled_table_item.inventory_quantity }}"
+                                data-uuid-inventory="{{ settled_table_item.uuid_inventory_item }}"
+                                data-uuid-correlation-transference="{{ settled_table_item.uuid_transference }}"
+                                scope="row">
+                                    <td class="checkbox-row"><label class="checkbox-container"><input id="custom-checkbox-{{ settled_table_item.id }}" class="custom-checkbox" type="checkbox"
+                                        data-id="{{ settled_table_item.id }}"
+                                        data-uuid-correlation-transference="{{ settled_table_item.uuid_transference }}"
+                                        data-uuid-partial-settlement-correlation="{{ settled_table_item.uuid_partial_settlement_correlation }}"><span class="checkmark"></span></label></td>
+                                    <td class="due_date-row">{{ settled_table_item.settlement_date|date:"d/m/Y" }}</td>
+                                    <td class="description-row">{{ settled_table_item.description }}</td>
+                                    <td class="observation-row">
+                                        {{ settled_table_item.observation }}
+                                        <small class="tag-row">Tags: {{ settled_table_item.tags }}</small>
+                                    </td>
+                                    <td class="bank-row">{{ settled_table_item.settlement_bank }}</td>
+                                    <td class="installment-row">{{ settled_table_item.current_installment }}/{{ settled_table_item.total_installments }}</td>
+                                    <input type="hidden" id="original-total-installments-recebimentos" name="original_total_installments">
+                                    <input type="hidden" id="original-total-installments-pagamentos" name="original_total_installments">
+                                    {% if settled_table_item.transaction_type == 'Débito' %}
+                                        <td class="debito-row">{{ settled_table_item.amount|format_number }}</td>
+                                        <td class="credito-row"></td>
+                                    {% else %}
+                                        <td class="debito-row"></td>
+                                        <td class="credito-row">{{ settled_table_item.amount|format_number }}</td>
+                                    {% endif %}
+                                    <td class="balance-row" id="balance-row">{{ settled_table_item.saldo|format_number }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <!-- Modal realizado -->
+        <dialog class="modal-realizado" id="modal-realizado">
+
+            <h1 class="modal-titulo">Realizado</h1>
+            
+            <form class="modal-form-realizado" action="/realizado/" method="POST">{% csrf_token %}
+                <input type="hidden" name="lancamento_id_realizado" value="{{ settled_table_item.id }}">
+                <input type="hidden" name="uuid_transference" value="{{ settled_table_item.uuid_transference }}">
+                <input type="hidden" name="uuid_partial_settlement_correlation" value="{{ settled_table_item.uuid_partial_settlement_correlation }}">
+                <section class="modal-section">
+                    <label for="data-realizado">Data</label>
+                    <input class="modal-date" id="data-realizado" type="date" name="due_date" required><br>
+                </section>
+            
+                <section class="modal-section">
+                    <label for="description-realizado">Descrição</label>
+                    <input class="modal-description" id="description-realizado" maxlength="100" type="text" name="description" required><br>
+                </section>
+            
+                <section class="modal-section">
+                    <label for="observation-realizado">Observação</label>
+                    <input class="modal-observation" id="observation-realizado" maxlength="100" type="text" name="observation"></input><br>
+                </section>
+                
+                <section class="modal-section">
+                    <label for="amount-realizado">Valor</label>
+                    <input class="modal-amount" id="amount-realizado" type="text" name="amount" required readonly><br>
+                </section>
+            
+                <section class="modal-section">
+                    <label for="general-ledger-account-realizado">Conta Contábil</label>
+                    <input class="modal-general-ledger-account" id="general-ledger-account-realizado" type="text" name="general_ledger_account" required readonly>
+                    </input><br>
+                </section>
+            
+                <section class="modal-section" id="installments-section-realizado">
+                    <label for="installments-realizado">Parcela</label>
+                    <input class="modal-installments" id="installments-realizado" type="text" name="installments" data-current-installment="{{ settled_table_item.current_installment }}" data-total-installments="{{ settled_table_item.total_installments }}" min="1" value="1" readonly><br>
+                </section>
+
+                <section class="modal-section mesclar-2">
+                    <div id="tag-container-realizado" class="tag-container"></div>
+                </section>
+                <section class="modal-buttons">
+                    <input type="submit" class="modal-save-button" name="salvar_realizado" value="Salvar">
+                    <button type="button" class="modal-close-realizado">Cancelar</button>
+                </section>
+            </form>
+        </dialog>
+    </main>
+    <script src="{% static 'scripts/scripts_settled_entry.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+/* RETURN AND ADD BUTTONS ################################################################################################################# */
+.container-buttons {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 1rem 1rem 1rem;
+}
+
+/* RETURN BUTTON */
+.button-back {
+  position: absolute;
+  border: none;
+  height: 45px;
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  background-color: var(--main-color);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: var(--transition-effect1) var(--transition-duration2);
+}
+
+.button-back:hover {
+  background-color: var(--main-color);
+  box-shadow: var(--box-shadow2);
+}
+
+.button-back:focus {
+  outline: none;
+}
+
+/* ADD BUTTON */
+.button-add {
+    margin: 0px auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px #0000002a;
+    cursor: pointer;
+    transition-duration: var(--transition-duration1);
+    overflow: hidden;
+    position: relative;
+}
+
+.add-project {
+    background-color: var(--color5);
+}
+
+.svgIcon {
+    width: 40px;
+    transition-duration: var(--transition-duration1);
+}
+  
+.svgIcon path {
+    fill: var(--white);
+}
+  
+.button-add:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: var(--transition-duration1);
+    align-items: center;
+}
+  
+.add-project:hover {
+    background-color: var(--color3);
+}
+  
+.button-add:hover .svgIcon {
+    width: 100px;
+    transition-duration: var(--transition-duration1);
+    transform: translateY(4%);
+}
+  
+.add-project::before {
+    position: absolute;
+    top: -20px;
+    color: var(--white);
+    transition-duration: var(--transition-duration1);
+    font-size: 2px;
+}
+
+.button-add:hover.add-project::before {
+    content: "Adicionar";
+}
+  
+.button-add:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: var(--transition-duration1);
+}
+
+.button-add:focus {
+    outline: none;
+}
+
+/* PROJECT TABLE ############################################################################################################################ */
+.box-grid-projects {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  padding: 1.625rem 1.625rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow1);
+}
+
+.projects-table-wrapper {
+  max-height: 450px;
+  overflow-y: auto;
+  display: block;
+  border: 0.5px solid #d6d6d6;
+  margin: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+.projects-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--primary-font);
+  color: #202020;
+  border-spacing: 0;
+}
+
+.projects-table th {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #202020;
+}
+
+.projects-table td {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.projects-table tbody tr:hover,
+.projects-table tbody tr:focus {
+  background: #ff92671e;
+}
+
+.projects-table tbody tr {
+  height: 30px;
+  border-top: 1px solid #ececec;
+  transition: 0.3s all ease;
+}
+
+.projects-table__head {
+  position: sticky;
+  top: 0;
+  height: 30px;
+  background-color: var(--color2);
+  z-index: 1;
+  backdrop-filter: (5px);
+  color: #202020;
+}
+
+.projects-table__body--row {
+  height: 35px;
+  text-align: center;
+}
+
+/* PROJECT MODAL ############################################################################################################################ */
+.mesclar-2 {
+  grid-column: span 2;
+}
+
+.modal {
+  width: 85%;
+  margin: auto auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow1);
+  transition: var(--transition-duration1);
+  outline: none;
+  border: 1px solid #d6d6d6;
+}
+
+.modal::backdrop {
+  max-height: 100% !important;
+  backdrop-filter: blur(10px);
+}
+
+.modal-title {
+  margin-bottom: 1rem;
+}
+
+.modal-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.modal-fields section {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.modal-section > select,
+.modal-section > input,
+.modal-section > div {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 5px;
+  height: 41px;
+}
+
+/* Estilo das Caixas de Seleções e Datas */
+.modal-section select,
+.modal-section input,
+.modal-section button {
+  background-color: var(--color2);
+  border: none;
+  color: var(--black);
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  outline: none;
+  transition: var(--transition-effect1) .5s;
+}
+
+.modal-section select:hover,
+.modal-section select:focus,
+.modal-section input:hover,
+.modal-section input:focus,
+.modal-section button:hover,
+.modal-section button:focus {
+  box-shadow: var(--box-shadow1);
+}
+
+/* Botões dos Modais */
+.modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.modal-save-button-project,
+.modal-close-project,
+.modal-delete-project {
+  border: none;
+  height: 45px;
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  transition: var(--transition-effect1) var(--transition-duration2);
+}
+
+.modal-save-button-project:focus,
+.modal-close-project:focus,
+.modal-delete-project:focus {
+  outline: none;
+}
+
+.modal-save-button-project {
+  background-color: var(--color5);
+}
+
+.modal-save-button-project:hover {
+  background-color: var(--color3);
+  box-shadow: var(--box-shadow2);
+}
+
+.modal-close-project {
+  background-color: var(--color6);
+}
+
+.modal-close-project:hover {
+  background-color: var(--color8);
+  box-shadow: var(--box-shadow2);
+}
+
+.modal-delete-project {
+  background-color: #500000;
+}
+
+.modal-delete-project:hover {
+  background-color: var(--color6);
+  box-shadow: var(--box-shadow2);
+}

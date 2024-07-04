@@ -1,0 +1,366 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* Estilos Universais */
+:root {
+  --primary-font: Inter, -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+  --transition-duration1: 0.3s;
+  --transition-duration2: 0.2s;
+  --transition-effect1: all ease-in-out;
+  --box-shadow1: 0 0 1em #00000013;
+  --box-shadow2: 0 0 1em #00000023;
+  --main-color: #F46A35;
+  --secondary-color: #9BE7E2;
+  --white: #FFFFFF;
+  --black: var(--black);
+  --color1: #F0EEEE;
+  --color2: #F4F2F2;
+  --color3: #B1C381;
+  --color4: #3D3D40;
+  --color5: #006919;
+  --color6: #740000;
+  --color7: #7F4FFF;
+  --color8: #F87C7C;
+  --color9: #FFEB24;
+  --border1: solid 1px #ececec;
+  --border2: solid 10px #ececec;
+}
+
+.tabs__buttons-list--settled-page {
+  color: var(--main-color);
+}
+
+/* Tabela de Liquidação */
+.settled-table-wrapper {
+  width: 95%;
+  margin: 0px auto;
+  margin-top: 10px;
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 15px 15px 0px 0px;
+}
+
+.settled-table {
+  margin: 0px auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.settled-table thead tr th {
+  font-weight: 700 !important;
+}
+
+.settled-table tr th {
+  background-color: #f1f1f1;
+  font-size: 14px;
+  font-weight: 500;
+  height: 30px;
+  color: #202020;
+}
+
+.settled-table tr td {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.settled-table tr td small {
+  display: block;
+  font-weight: 400;
+  padding-top: 2px;
+}
+
+.settled-table tbody tr {
+  height: 37.5px;
+  border-top: 1px solid #ececec;
+  transition: 0.3s all ease;
+}
+
+.settled-table tbody tr:hover,
+.settled-table tbody tr:focus {
+  background: #ff92671e;
+}
+
+.settled-table tbody .month-totals-row,
+.settled-table tbody .month-totals-row:hover {
+  background-color: #f8f8f8;
+}
+
+.settled-table tr th,
+.settled-table tr td {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.settled-table tr th:first-child {
+  border-top-left-radius: 15px;
+}
+
+.settled-table tr th:last-child {
+  border-top-right-radius: 15px;
+}
+
+.settled-table tr td:nth-child(1) {
+  min-width: 75px;
+  max-width: 75px;
+}
+
+.settled-table tr td:nth-child(2) {
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.settled-table tr td:nth-child(3),
+.settled-table tr td:nth-child(4) {
+  min-width: 270px;
+  max-width: 270px;
+}
+
+.settled-table tr td:nth-child(5) {
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.settled-table tr td:nth-child(6) {
+  min-width: 60px;
+  max-width: 60px;
+}
+
+.settled-table tr td:nth-child(7),
+.settled-table tr td:nth-child(8),
+.settled-table tr td:nth-child(9) {
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.settled-table .month-totals-row td:nth-child(2),
+.settled-table .month-totals-row td:nth-child(3),
+.settled-table .month-totals-row td:nth-child(4),
+.settled-table .month-totals-row td:nth-child(5) {
+  font-weight: 600;
+  min-width: 140px;
+  max-width: 140px;
+}
+
+/* Modais */
+.modal-amount,
+.modal-general-ledger-account,
+.modal-installments {
+  background-color: #B5B5B5;
+  color: var(--white);
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  transition: var(--transition-effect1) .5s;
+}
+
+.modal-amount:focus,
+.modal-general-ledger-account:focus,
+.modal-installments:focus {
+  background-color: #B5B5B5 !important;
+}
+
+.modal-data,
+.modal-description,
+.modal-obs {
+  background-color: var(--color2);
+  border: none;
+  color: var(--black);
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  transition: var(--transition-effect1) .5s;
+}
+
+.modal-realizado {
+  width: 80%;
+  margin: auto auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow1);
+  transition: var(--transition-duration1);
+  font-family: 'Open Sans', sans-serif;
+  outline: none;
+}
+
+.mesclar-2 {
+  grid-column: span 2;
+}
+
+.modal-recebimentos::backdrop,
+.modal-pagamentos::backdrop,
+.transference-modal::backdrop {
+  overflow-y: scroll !important;
+  max-height: 100% !important;
+}
+
+.modal-titulo {
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+
+dialog > form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.lancamentos-selecionados {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr 0.8fr 0.40fr 0.3fr 0.1fr;
+}
+
+.transference-modal > form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+dialog > form > section {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+section.modal-flex {
+  margin: 0px 5px;
+}
+
+.modal-flex > select,
+.modal-flex > input {
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+/* Estilo das Caixas de Seleções e Datas */
+.modal-flex select:hover,
+.modal-flex select:focus,
+.modal-flex input:hover,
+.modal-flex input:focus {
+  box-shadow: var(--box-shadow1);
+}
+
+.modal-flex select,
+input:focus {
+  outline: none;
+  background-color: var(--color1);
+}
+
+/* Botões dos Modais */
+.modal-botoes {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 10px 5px;
+  gap: 1.5rem;
+}
+
+.modal-fechar-realizado,
+.modal-salvar {
+  border: none;
+  height: 45px;
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  transition: var(--transition-effect1) var(--transition-duration2);
+}
+
+.modal-fechar-realizado,:focus,
+.modal-salvar:focus {
+  outline: none;
+}
+
+.modal-fechar-realizado:hover {
+  background-color: var(--color8);
+  box-shadow: var(--box-shadow2);
+}
+
+.modal-fechar-realizado {
+  background-color: var(--color6);
+}
+
+.modal-salvar {
+  background-color: var(--color5);
+}
+
+.modal-salvar:hover {
+  background-color: var(--color3);
+  box-shadow: var(--box-shadow2);
+}
+
+/* Tag Container */
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.tag {
+  background-color: var(--main-color);
+  color: #000000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tag input {
+  display: none;
+  border: none;
+  background: var(--main-color);
+  color: var(--color4);
+  font-weight: 700;
+  width: auto;
+}
+
+.tag input:focus {
+  display: none;
+  border: none;
+  background: var(--color2);
+  color: var(--color4);
+  font-weight: 700;
+  width: auto;
+}
+
+input#tagInput {
+  padding: 8px;
+  font-size: 16px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .box-grid,
+  .box-grid-filters,
+  .box-grid-bancos {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    padding: 1rem;
+    height: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .box-grid {
+    background-color: none;
+    box-shadow: none;
+    padding: 0rem;
+    margin: 0rem 1rem;
+  }
+  
+  .box-grid-filters {
+    border-radius: 1rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow1);
+  }
+}

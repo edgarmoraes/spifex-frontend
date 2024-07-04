@@ -1,0 +1,787 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* Estilos Universais */
+:root {
+  --primary-font: Inter, -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+  --transition-duration1: 0.3s;
+  --transition-duration2: 0.2s;
+  --transition-effect1: all ease-in-out;
+  --box-shadow1: 0 0 1em #00000013;
+  --box-shadow2: 0 0 1em #00000023;
+  --main-color: #F46A35;
+  --secondary-color: #9BE7E2;
+  --white: #FFFFFF;
+  --black: var(--black);
+  --color1: #F0EEEE;
+  --color2: #F4F2F2;
+  --color3: #B1C381;
+  --color4: #3D3D40;
+  --color5: #006919;
+  --color6: #740000;
+  --color7: #7F4FFF;
+  --color8: #F87C7C;
+  --color9: #FFEB24;
+  --border1: solid 1px #ececec;
+  --border2: solid 10px #ececec;
+}
+
+.tabs__buttons-list--cash-flow-page {
+  color: var(--main-color);
+}
+
+/* SETTLEMENT BANK TABLE ####################################################################################################################### */
+.banks-table-settlement-wrapper {
+  max-height: 212px;
+  overflow-y: auto;
+  display: block;
+  width: 100%;
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  margin-bottom: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+.banks-table-settlement {
+  margin: 0px auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.banks-table-settlement {
+  max-height: 211px;
+  overflow: scroll;
+}
+
+.banks-table-settlement thead tr th {
+  position: sticky;
+  top: 0;
+  background-color: #f1f1f1;
+  font-weight: 700;
+  z-index: 100;
+}
+
+.total-banks-balance-row td {
+  font-weight: 700 !important;
+}
+
+.banks-table-settlement .total-banks-balance-row {
+  position: sticky;
+  bottom: 0;
+  background-color: #f1f1f1;
+}
+
+.banks-table-settlement tr th {
+  background-color: #f1f1f1;
+  font-size: 14px;
+  font-weight: 500;
+  height: 30px;
+  color: #202020;
+}
+
+.banks-table-settlement tr td {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.banks-table-settlement tbody tr {
+  height: 30px;
+  border-top: 1px solid #ececec;
+  transition: 0.3s all ease;
+}
+
+.banks-table-settlement tr th,
+.banks-table-settlement tr td {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.banks-table-settlement tr th:first-child {
+  border-top-left-radius: 15px;
+}
+
+.banks-table-settlement tr th:last-child {
+  border-top-right-radius: 15px;
+}
+
+.banks-table-settlement .total-banks-balance-row td:first-child {
+  border-bottom-left-radius: 15px;
+}
+
+.banks-table-settlement .total-banks-balance-row td:last-child {
+  border-bottom-right-radius: 15px;
+}
+
+.banks-table-settlement tr td:nth-child(1) {
+  min-width: 70px;
+  max-width: 70px;
+}
+
+.banks-table-settlement tr td:nth-child(2) {
+  min-width: 400px;
+  max-width: 400px;
+}
+
+.banks-table-settlement tr td:nth-child(3) {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.banks-table-settlement tr td:nth-child(4) {
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.banks-table-settlement tr td:nth-child(5) {
+  min-width: 150px;
+  max-width: 150px;
+}
+
+/* SETTLEMENT CHECKBOX ######################################################################################################################### */
+.checkbox-container-settlement,
+.checkbox-container-weekend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 17.5px; /* 25px * 0.7 */
+  height: 17.5px; /* 25px * 0.7 */
+  position: relative;
+  margin: auto;
+  user-select: none;
+}
+
+.custom-checkbox-settlement,
+.custom-checkbox-weekend,
+.custom-checkbox-select-all {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark-settlement,
+.checkmark-weekend,
+.checkmark-checkbox-select-all {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 17.5px; /* 25px * 0.7 */
+  width: 17.5px; /* 25px * 0.7 */
+  background-color: #eee;
+  border-radius: 2.8px; /* 4px * 0.7 */
+  transition: background-color 0.3s;
+  box-shadow: 0 1.4px 3.5px rgba(0, 0, 0, 0.2); /* adaptar a proporção */
+}
+
+.checkmark-settlement:after,
+.checkmark-weekend:after,
+.checkmark-checkbox-select-all:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6.4px; /* 9px * 0.7 */
+  top: 1.5px; /* 5px * 0.7 */
+  width: 3.5px; /* 5px * 0.7 */
+  height: 7px; /* 10px * 0.7 */
+  border: solid #202020;
+  border-width: 0 2.1px 2.1px 0; /* largura da borda adaptada */
+  transform: rotate(45deg);
+}
+
+.checkmark-weekend:after {
+  top: 1px;
+}
+
+.custom-checkbox-settlement:checked ~ .checkmark-settlement,
+.custom-checkbox-weekend:checked ~ .checkmark-weekend,
+.custom-checkbox-select-all:checked ~ .checkmark-checkbox-select-all {
+  background-color: #F46A35;
+  box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3);
+}
+
+.custom-checkbox-weekend:disabled ~ .checkmark-weekend {
+  background-color: #cfcece;
+  box-shadow: none;
+  cursor: default;
+}
+
+.custom-checkbox-weekend:disabled ~ .checkmark-weekend:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6.4px; /* 9px * 0.7 */
+  top: 1.5px; /* 5px * 0.7 */
+  width: 3.5px; /* 5px * 0.7 */
+  height: 7px; /* 10px * 0.7 */
+  border: solid #ffffff;
+  border-width: 0 2.1px 2.1px 0; /* largura da borda adaptada */
+  transform: rotate(45deg);
+}
+
+.custom-checkbox-settlement:checked ~ .checkmark-settlement:after,
+.custom-checkbox-weekend:checked ~ .checkmark-weekend:after,
+.custom-checkbox-select-all:checked ~ .checkmark-checkbox-select-all:after {
+  display: block;
+}
+
+@keyframes checkAnim {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 10px;
+  }
+}
+
+.custom-checkbox-settlement:checked ~ .checkmark-settlement:after,
+.custom-checkbox-weekend:checked ~ .checkmark-weekend:after,
+.custom-checkbox-select-all:checked ~ .checkmark-checkbox-select-all:after {
+  animation: checkAnim 0.2s forwards;
+}
+
+/* CASH FLOW MODALS HEADER ############################################################################################################################ */
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding-top: 30px;
+  gap: 15px;
+  border-bottom: 0.5px solid #00000026;
+  user-select: none;
+  margin-bottom: 10px;
+}
+
+.modal-header h1 {
+  margin-left: 1rem;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.modal-tabs {
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.tab-link {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  border-radius: 15px 15px 0px 0px;
+  transition: background-color 0.3s;
+}
+
+.tab-link:hover {
+  background-color: #adadad;
+}
+
+.tab-link.active {
+  background-color: #f0f0f0;
+}
+
+.tab-content {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+/* CASH FLOW MODALS ############################################################################################################################ */
+.mesclar-2 {
+  grid-column: span 2;
+}
+
+.modal {
+  width: 85%;
+  height: 80%;
+  margin: auto auto;
+  background-color: var(--white);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow1);
+  transition: var(--transition-duration1);
+  outline: none;
+  border: 1px solid #d6d6d6;
+}
+
+.transference-modal {
+  height: 65%;
+  width: 40%;
+}
+
+.modal::backdrop {
+  max-height: 100% !important;
+  backdrop-filter: blur(10px);
+}
+
+.modal-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.modal-cost-center-fields,
+.transferences-modal-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.transferences-modal-form {
+  margin: 0px 12px;
+}
+
+.modal-fields section {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.modal-fields section label {
+  user-select: none;
+}
+
+.modal-section > select,
+.modal-section > input,
+.modal-section > div {
+  width: 100%;
+  margin-top: 5px;
+  height: 41px;
+}
+
+/* Estilo das Caixas de Seleções e Datas */
+.modal-section select,
+.modal-section input,
+.modal-section button {
+  background-color: var(--color2);
+  font-size: 12px;
+  border: none;
+  color: var(--black);
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  outline: none;
+  transition: var(--transition-effect1) .5s;
+}
+
+.modal-dropdown-button {
+  height: 100%;
+  background-color: #f9f9f9;
+  color: black;
+  padding: 8px;
+  border: none !important;
+  cursor: pointer;
+  width: 100%;
+  font-family: var(--primary-font);
+  font-size: 13px;
+  background-color: var(--color2);
+  border: var(--border1);
+  color: var(--color4);
+  padding: 11px 16px;
+  border-radius: 5px;
+  transition: .3s all ease;
+}
+
+.modal-dropdown-button:hover {
+  box-shadow: var(--box-shadow1);
+  background-color: var(--color1);
+  color: var(--black);
+}
+
+.modal-dropdown-button-search {
+  width: 100%;
+}
+
+.modal-section select:hover,
+.modal-section select:focus,
+.modal-section input:hover,
+.modal-section input:focus,
+.modal-section button:hover,
+.modal-section button:focus {
+  box-shadow: var(--box-shadow1);
+}
+
+/* MODAL TAG CONTAINER ############################################################################################################################ */
+.tag-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px !important;
+  max-height: 57px !important;
+  height: fit-content !important;
+  padding-top: 1px;
+  max-width: 100%;
+  overflow: auto;
+  gap: 5px;
+  transition: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+/* Scrollbar styling for Chrome, Edge, and Safari */
+.tag-container::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.tag-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tag-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25.5px;
+  color: #000000;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 0.5px solid #d6d6d6;
+  transition: none;
+}
+
+.tag span {
+  margin: 0px 10px;
+  transition: none;
+}
+
+.tag input {
+  display: none;
+  color: var(--color4);
+  font-weight: 700;
+  border-radius: 15px;
+  outline: none;
+  transition: none;
+}
+
+.tag input:focus {
+  display: none;
+  background: var(--color2);
+  font-weight: 400;
+  height: 25.5px;
+  border-radius: 15px;
+  border: 0.5px solid #d6d6d6;
+  outline: none;
+  box-shadow: none;
+  transition: none;
+  padding: 5px 10px;
+}
+
+/* MODAL SECTIONS ####################################################################################################################################### */
+/* MODAL INVENTORY SECTION */
+.dropdown-content-inventory {
+  max-width: 400px !important;
+}
+
+/* MODAL DEPARTMENTS SECTION */
+.department-list {
+  width: 75% !important;
+  height: 242px !important;
+  max-height: 242px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+.department-item {
+  display: grid;
+  grid-template-columns: 80% 15% 5%;
+  padding: 5px 10px;
+}
+
+.department-name {
+  margin: auto auto auto 0px;
+}
+
+.percentage-name {
+  margin: auto;
+  user-select: none;
+}
+
+.department-percentage {
+  padding: 10px 0px 10px 10px !important;
+  font-size: 12px;
+}
+
+/* MODAL INSTALLMENTS SECTION */
+.section__recurrence {
+  width: 120px !important;
+  min-width: 120px !important;
+}
+
+.section__weekend {
+  width: 130px;
+  text-align: center;
+}
+
+.weekend-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.weekend-checkbox-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weekend-label {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.installments-container,
+.periods-weekend-container {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.installments-table__head {
+  position: sticky;
+  top: 0;
+}
+
+.installments-table-wrapper {
+  width: 100% !important;
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+/* MODAL BUTTONS ############################################################################################################################ */
+.modal-buttons {
+  display: flex;
+  position: absolute;
+  flex-direction: row !important;
+  justify-content: flex-end;
+  align-items: flex-end;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  padding: 0px 50px 50px 0px;
+  gap: 1.5rem;
+  user-select: none;
+}
+
+.modal-close-button,
+.modal-close-transferences,
+.modal-close-settlement,
+.modal-save-button {
+  border: none;
+  height: 45px;
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  transition: var(--transition-effect1) var(--transition-duration2);
+}
+
+.modal-close-button,
+.modal-close-transferences,
+.modal-close-settlement {
+  background-color: var(--color6);
+}
+
+.modal-save-button {
+  background-color: var(--color5);
+}
+
+.modal-close-button:focus,
+.modal-close-transferences:focus,
+.modal-close-settlement,:focus,
+.modal-save-button:focus {
+  outline: none;
+}
+
+.modal-close-button:hover,
+.modal-close-transferences:hover,
+.modal-close-settlement:hover,
+.modal-save-button:hover {
+  background-color: var(--color8);
+  box-shadow: var(--box-shadow2);
+  cursor: pointer;
+}
+
+.modal-save-button:hover {
+  background-color: var(--color3);
+  box-shadow: var(--box-shadow2);
+}
+/* SETTLEMENT MODAL ##################################################################################################################################### */
+.settlement-modal {
+  height: 90%;
+}
+
+.settlement-modal-form {
+  margin: 0px 12px;
+}
+
+/* SETTLEMENT MODAL LIST ############################################################################################################################ */
+.selected-entries-list-labels {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr 0.8fr 0.40fr 0.3fr 0.1fr;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  gap: 10px;
+}
+
+.selected-entries-list-labels > label {
+  margin: auto;
+}
+
+.selected-entries-list {
+  max-height: 185px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+.selected-entries.active,
+.selected-entries-list-labels.active {
+  grid-template-columns: 0.4fr 0.6fr 0.8fr 0.40fr 0.3fr 0.1fr 0.4fr;
+}
+
+.selected-entries {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr 0.8fr 0.40fr 0.3fr 0.1fr;
+  gap: 10px;
+}
+
+.settlement-balance {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0px auto auto;
+}
+
+.settlement-balance-label {
+  margin-left: auto;
+}
+
+/* PARTIAL SETTLEMENT BUTTON ######################################################################################################################## */
+.modal-partial-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-switch {
+  display: flex;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: rotate(-90deg); /* Adiciona a rotação de 90 graus */
+  transform-origin: center; /* Define o ponto de origem da transformação */
+}
+.form-switch i {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 26px;
+  background-color: #e6e6e6;
+  border-radius: 23px;
+  vertical-align: text-bottom;
+  transition: all 0.3s linear;
+}
+.form-switch i::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 36px;
+  height: 22px;
+  background-color: #fff;
+  border-radius: 11px;
+  transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+  transition: all 0.25s linear;
+}
+.form-switch i::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  border-radius: 11px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+  transform: translate3d(2px, 2px, 0);
+  transition: all 0.2s ease-in-out;
+}
+.form-switch:active i::after {
+  width: 22px;
+  transform: translate3d(2px, 2px, 0);
+}
+.form-switch:active input:checked + i::after { transform: translate3d(12px, 2px, 0); }
+.form-switch input { display: none; }
+.form-switch input:checked + i { background-color: var(--main-color); }
+.form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
+.form-switch input:checked + i::after { transform: translate3d(15px, 2px, 0); }
+
+/* MEDIA QUERY ############################################################################################################################ */
+@media screen and (max-width: 768px) {
+  .box-grid,
+  .box-grid-filters,
+  .box-grid-bancos {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    padding: 1rem;
+    height: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .box-grid {
+    background-color: none;
+    box-shadow: none;
+    padding: 0rem;
+    margin: 0rem 1rem;
+  }
+  
+  .box-grid-filters {
+    border-radius: 1rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow1);
+  }
+
+  .credit-modal,
+  .debit-modal,
+  .transference-modal {
+    width: 100%; /* Ocupa toda a largura em dispositivos móveis */
+  }
+
+  .transference-modal > form,
+  dialog > div > form {
+    grid-template-columns: 1fr; /* Coloca todos os itens em uma única coluna */
+  }
+
+  .mesclar-2 {
+    grid-column: 1 / -1; /* Faz com que ocupem toda a largura disponível da grid */
+  }
+
+  .modal-buttons {
+    margin-top: 1rem;
+  }
+}

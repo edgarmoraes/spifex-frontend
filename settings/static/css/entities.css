@@ -1,0 +1,361 @@
+/* RETURN AND ADD BUTTONS ################################################################################################################# */
+.container-buttons {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 1rem 1rem 1rem;
+}
+
+/* RETURN BUTTON */
+.button-back {
+  position: absolute;
+  border: none;
+  height: 45px;
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  background-color: var(--main-color);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: var(--transition-effect1) var(--transition-duration2);
+}
+
+.button-back:hover {
+  background-color: var(--main-color);
+  box-shadow: var(--box-shadow2);
+}
+
+.button-back:focus {
+  outline: none;
+}
+
+/* ADD BUTTON */
+.button-add {
+    margin: 0px auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px #0000002a;
+    cursor: pointer;
+    transition-duration: var(--transition-duration1);
+    overflow: hidden;
+    position: relative;
+}
+
+.add-entity {
+    background-color: var(--color5);
+}
+
+.svgIcon {
+    width: 40px;
+    transition-duration: var(--transition-duration1);
+}
+  
+.svgIcon path {
+    fill: var(--white);
+}
+  
+.button-add:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: var(--transition-duration1);
+    align-items: center;
+}
+  
+.add-entity:hover {
+    background-color: var(--color3);
+}
+  
+.button-add:hover .svgIcon {
+    width: 100px;
+    transition-duration: var(--transition-duration1);
+    transform: translateY(4%);
+}
+  
+.add-entity::before {
+    position: absolute;
+    top: -20px;
+    color: var(--white);
+    transition-duration: var(--transition-duration1);
+    font-size: 2px;
+}
+
+.button-add:hover.add-entity::before {
+    content: "Adicionar";
+}
+  
+.button-add:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: var(--transition-duration1);
+}
+
+.button-add:focus {
+    outline: none;
+}
+
+/* INVENTORY TABLE ################################################################################################################# */
+.box-grid-entity {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  padding: 1.625rem 1.625rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow1);
+}
+
+.entity-table-wrapper {
+  max-height: 450px;
+  overflow-y: auto;
+  display: block;
+  border: 0.5px solid #d6d6d6;
+  margin: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.5) transparent;
+}
+
+.entity-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--primary-font);
+  color: #202020;
+  border-spacing: 0;
+}
+
+.entity-table th {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #202020;
+}
+
+.entity-table td {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.entity-table tbody tr:hover,
+.entity-table tbody tr:focus {
+  background: #ff92671e;
+}
+
+.entity-table tbody tr {
+  height: 30px;
+  border-top: 1px solid #ececec;
+  transition: 0.3s all ease;
+}
+
+.entity-table__head {
+  position: sticky;
+  top: 0;
+  height: 30px;
+  background-color: var(--color2);
+  z-index: 1;
+  backdrop-filter: (5px);
+  color: #202020;
+}
+
+.entity-table__body--row {
+  height: 35px;
+  text-align: center;
+}
+
+.code-row,
+.entity-item-row {
+  text-align: left;
+  padding: 3px 5px;
+}
+
+.entity-table tr td:nth-child(1) {
+  min-width: 560px;
+  max-width: 560px;
+}
+
+.entity-table tr td:nth-child(2) {
+  min-width: 560px;
+  max-width: 560px;
+}
+
+/* MODAL FOR INVENTORY REGISTRATION ################################################################################################################# */
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding-top: 30px;
+  gap: 15px;
+  border-bottom: 0.5px solid #00000026;
+  user-select: none;
+  margin-bottom: 10px;
+}
+
+.modal-header h1 {
+  margin-left: 1rem;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.modal-tabs {
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.tab-link {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  border-radius: 15px 15px 0px 0px;
+  transition: background-color 0.3s;
+}
+
+.tab-link:hover {
+  background-color: #adadad;
+}
+
+.tab-link.active {
+  background-color: #f0f0f0;
+}
+
+.tab-content {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.mesclar-3 {
+  grid-column: span 3;
+}
+
+.modal {
+  width: 85%;
+  height: 60%;
+  margin: auto auto;
+  background-color: var(--white);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow1);
+  transition: var(--transition-duration1);
+  outline: none;
+  border: 1px solid #d6d6d6;
+}
+
+.modal::backdrop {
+  max-height: 100% !important;
+  backdrop-filter: blur(10px);
+}
+
+.modal-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.modal-fields section {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.modal-section > select,
+.modal-section > input,
+.modal-section > div {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 5px;
+  height: 41px;
+}
+
+/* Estilo das Caixas de Seleções e Datas */
+.modal-section select,
+.modal-section input,
+.modal-section button {
+  background-color: var(--color2);
+  border: none;
+  color: var(--black);
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  outline: none;
+  transition: var(--transition-effect1) .5s;
+}
+
+.modal-section select:hover,
+.modal-section select:focus,
+.modal-section input:hover,
+.modal-section input:focus,
+.modal-section button:hover,
+.modal-section button:focus {
+  box-shadow: var(--box-shadow1);
+}
+
+/* MODAL BUTTONS */
+.modal-buttons {
+  display: flex;
+  position: absolute;
+  flex-direction: row !important;
+  justify-content: flex-end;
+  align-items: flex-end;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  padding: 0px 50px 50px 0px;
+  gap: 1.5rem;
+  user-select: none;
+}
+
+.modal-save-button-entity,
+.modal-close-entity,
+.modal-delete-entity {
+  border: none;
+  height: 45px;
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  transition: var(--transition-effect1) var(--transition-duration2);
+}
+
+.modal-save-button-entity:focus,
+.modal-close-entity:focus,
+.modal-delete-entity:focus {
+  outline: none;
+}
+
+.modal-save-button-entity {
+  background-color: var(--color5);
+}
+
+.modal-save-button-entity:hover {
+  background-color: var(--color3);
+  box-shadow: var(--box-shadow2);
+}
+
+.modal-close-entity {
+  background-color: var(--color6);
+}
+
+.modal-close-entity:hover {
+  background-color: var(--color8);
+  box-shadow: var(--box-shadow2);
+}
+
+.modal-delete-entity {
+  background-color: #500000;
+}
+
+.modal-delete-entity:hover {
+  background-color: var(--color6);
+  box-shadow: var(--box-shadow2);
+}
